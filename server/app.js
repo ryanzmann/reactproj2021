@@ -8,10 +8,15 @@ var logger = require('morgan');
 //require CORS
 var cors = require("cors");
 
+//------
+//ROUTER DEFINITIONS
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
 // test route
 var testAPIRouter = require('./routes/testAPI');
+var v1Router = require('./routes/v1');
 
 var app = express();
 
@@ -27,10 +32,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//------
+//ROUTE USAGE
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 // test route
 app.use("/testAPI", testAPIRouter);
+app.use('/v1', v1Router);
 
 
 // catch 404 and forward to error handler
